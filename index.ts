@@ -1,13 +1,9 @@
-import { docs } from "./routes/docs.js";
-import { products } from "./routes/products.js";
-import { swagger } from "./routes/swagger.js";
 import server from "./server.js";
+import { startUpRoutes } from "./start/routes.js";
 
 // Routes
-server.use(products);
-server.use(swagger);
-server.use(docs);
+startUpRoutes(server);
 
-// Default
-server.get(`/`, (_, res) => res.json("Server is Running at 3333"));
-server.listen(3333, () => console.log("listen on 3333"));
+// Run
+const port = process.env.PORT || 3333;
+server.listen(port, () => console.log("listen on 3333"));
