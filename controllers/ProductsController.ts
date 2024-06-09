@@ -1,9 +1,10 @@
 import { randomUUID } from "crypto";
 import { HttpContext } from "../contracts/HttpContext.js";
+import * as yup from "yup";
 
 export default class ProductsController {
   static async index({ request, response }: HttpContext) {
-    response.json([
+    return response.json([
       {
         id: randomUUID(),
         name: "leite",
@@ -23,11 +24,13 @@ export default class ProductsController {
   }
 
   static async store({ request, response }: HttpContext) {
-    const { name } = request.body;
-    if (!name) return response.status(422).send("name is required");
-    response.json({
+    const schema = yup.object({
+      name: yup.string().required(),
+    });
+    const { name } = await schema.validate(request.body);
+    return response.json({
       id: randomUUID(),
-      name: "leite",
+      name: name,
       createdAt: new Date().toISOString(),
     });
   }

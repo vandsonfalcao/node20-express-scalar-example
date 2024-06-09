@@ -21,7 +21,7 @@ export default class SwaggerController {
 		/* NOTE: If you are using the express Router, you must pass in the 'routes' only the 
   root file where the route starts, such as index.js, app.js, routes.js, etc ... */
 		try {
-			swaggerAutogen({ openapi: "3.0.0" })(swaggerFilePath, routeFileDirectories, doc);
+			swaggerAutogen({ openapi: "3.0.0", language: 'pt-BR' })(swaggerFilePath, routeFileDirectories, doc);
 			const buffer = readFileSync(swaggerFilePath);
 			return response.json(JSON.parse(buffer.toString()));
 		} catch (error) {
