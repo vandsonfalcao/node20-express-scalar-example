@@ -8,8 +8,8 @@ const doc = {
 	},
 	servers: [
 		{
-			url: "", // by default: 'http://localhost:3000'
-			description: "", // by default: ''
+			url: "http://localhost:3333",
+			description: "Documentacao de rotas api",
 		},
 		// { ... }
 	],
